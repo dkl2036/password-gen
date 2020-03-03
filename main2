@@ -1,0 +1,80 @@
+'''
+
+PROGRAM: passwordgen.py
+
+NAME: Danielle Lamb
+
+DATE: February 29, 2020
+
+PURPOSE: Generates passwords with user's desired length and password type using asccii uppercase, ascii lowercase, numbers, and special characters
+
+'''
+
+import random, string
+
+while True:
+
+    while True:
+        try:
+            # stores password length
+            pass_len = int(input("Enter length of password: "))
+            break
+        except ValueError as error:
+            print(error)
+            print("Length must be an integer. Try again.")
+
+    while True:
+        try:
+            # stores user choice for password type
+            pass_type = int(input("What type of password? (Enter digit 1-5)\n1.) Only uppercase\n2.) Only lowercase\n3.) Only numbers\n4.) Only special characters\n5.) Mixed/Doesn't matter\n"))
+            break
+        except ValueError as error:
+            print(error)
+            print("Choice must be an integer (1-5). Try again.")
+
+    password = '' # stores password
+    upper = string.ascii_uppercase # stores uppercase ascii
+    lower = string.ascii_lowercase # stores lowercase ascii
+    digits = string.digits # stores numbers
+    punctuation = string.punctuation # stores special characters
+
+    # generates uppercase ascii passwords only
+    if pass_type == 1:
+        for x in range(pass_len):
+            password += random.choice(upper)
+        print(password)
+
+    # generates lowercase ascii passwords only
+    elif pass_type == 2:
+        for x in range(pass_len):
+            password += random.choice(lower)
+        print(password)
+
+    # generates numeric passwords only
+    elif pass_type == 3:
+        for x in range(pass_len):
+            password += random.choice(digits)
+        print(password)
+
+    # generates special character passwords only
+    elif pass_type == 4:
+        for x in range(pass_len):
+            password += random.choice(punctuation)
+        print(password)
+
+    # generates mixed password (lowercase, uppercase, numbers, special characters)
+    elif pass_type == 5:
+        for x in range(pass_len):
+            password += random.choice(upper+lower+digits+punctuation)
+        print(password)
+    else:
+        print("You must choose a number between 1 through 5. Try again.")
+
+    # stores feedback if user wants to make another password
+    feedback = input("Would you like to generate another password? (y/n): ")
+
+    # if yes, loop starts over; else, loop breaks
+    if feedback in ["y", "Y", "yes", "Yes", "YES"]:
+        continue
+    else:
+        break
